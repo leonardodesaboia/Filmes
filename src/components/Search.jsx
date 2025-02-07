@@ -10,7 +10,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
           />
           <input 
             type="text" 
-            placeholder="Buscar filmes por nome" 
+            placeholder="Buscar jogos por nome" 
             value={searchTerm} 
             onChange={(e) => setSearchTerm(e.target.value)} 
           />
