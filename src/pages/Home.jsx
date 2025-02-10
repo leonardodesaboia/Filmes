@@ -6,7 +6,7 @@ import MovieCard from '../components/MovieCard'
 import { API_BASE_URL, API_OPTIONS } from '../services/api'
 import Navbar from '../components/Navbar'
 
-const App = () => {
+const Home = () => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
@@ -83,4 +83,4 @@ const App = () => {
     )
   }
   
-  export default App
+  export default Home

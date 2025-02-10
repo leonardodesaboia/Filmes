@@ -4,12 +4,27 @@ import { useState, useEffect } from 'react'
 import Loader from '../components/Loader'
 import { API_BASE_URL, API_OPTIONS } from '../services/api'
 import Navbar from '../components/Navbar'
+import { useNavigate } from 'react-router-dom'
+
 
 const MovieDetails = () => {
  const { id } = useParams()
  const [movie, setMovie] = useState(null)
  const [isLoading, setIsLoading] = useState(true)
  const [error, setError] = useState(null)
+
+ const navigate = useNavigate();
+
+ const handleBuyClick = () => {
+  const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+  cartItems.push({
+    id: movie.id,
+    title: movie.title,
+    poster_path: movie.poster_path
+  });
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  navigate('/cart');
+};
 
  useEffect(() => {
    const fetchMovieDetails = async () => {
@@ -132,16 +147,9 @@ const MovieDetails = () => {
                 </div>
               </div>
 
-              {movie.homepage && (
-                <a 
-                  href={StorageManager.com}
-                  target="_blank"
-                  rel="noopener noreferrer" 
-                  className="homepage-button"
-                >
+                <a onClick={() => {navigate('/cart'); handleBuyClick()}} target="_blank" rel="noopener noreferrer" className="homepage-button">
                   Comprar 
                 </a>
-              )}
             </div>
           </div>
         </div>
